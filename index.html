@@ -9,11 +9,17 @@
 </head>
 <body>
     <header>
-        <a class="button-in-header">THE MOUNTAIN</a>
+        <a href="#document-title" class="button-in-header">THE MOUNTAIN</a>
         <div id="right-buttons">
         <a id="active-menu" class="button-in-header" >MOUNTAIN</a>
-        <a class="button-in-header">AMAZING BLOG</a>
-        <a class="button-in-header">AMAZING NEWS</a>
+        <a class="button-in-header">
+            <span class="long-txt">AMAZING BLOG</span>
+            <span class="short-txt">BLOG</span>
+        </a>
+        <a class="button-in-header">
+            <span class="long-txt">AMAZING NEWS</span>
+            <span class="short-txt">NEWS</span>
+        </a>
 
         </div>
     </header>
@@ -1523,8 +1529,19 @@
 				</g>
 			</g>
 	</svg>
-    
-
+    </div>
+    <div id="main-content-wrapper">
+        <p id="document-title">아름다운 금수강산</p>
+        <div id="mountain-tag-wrapper">
+            <ul class="mountain-content-wrapper">
+                <li class="mountain-content-list">지리산</li>
+                <li class="mountain-content-list">금상산</li>
+            </ul>
+            <ul class="mountain-content-wrapper">
+                <li class="mountain-content-list">한라산</li>
+                <li class="mountain-content-list">북한산</li>
+            </ul>
+        </div>
     </div>
 
     
@@ -1545,15 +1562,19 @@
     const mountain6= document.getElementById('mountain6');
     const mountain7= document.getElementById('mountain7');
 
+
+    let clientWith= document.documentElement.clientWidth
+
     window.addEventListener('scroll',()=>{
+        if(clientWith> 800){
         const scrollY = window.scrollY;
         const scrollX = window.scrollX;
         sun.style.transform=`translateY(${scrollY * 1.05}px)`
 
         grayCloud.style.transform=`translateX(${scrollY * 0.125}px)`
         whiteCloud.style.transform=`translateX(${scrollY * -0.125}px)`
-        
-        bird1.style.transform=`translateX(${scrollY}px)`
+
+        bird1.style.transform=`translateX(${scrollY}px) translateY(-${scrollY *1.5}px)`
         bird2.style.transform=`translateX(-${scrollY *3.5}px)`
         bird3.style.transform=`translateX(${scrollY * 0.5}px)`
 
@@ -1565,7 +1586,10 @@
         mountain5.style.transform=`translateY(${scrollY * 0.5}px)`
         mountain6.style.transform=`translateY(${scrollY * 0.2}px)`
         mountain7.style.transform=`translateY(${scrollY * 0.15}px)`
+        }
+
     })
+
 
 
     document.querySelectorAll("#right-buttons .button-in-header").forEach((element)=>{
@@ -1576,6 +1600,37 @@
 
         })
     })
-        
+
+    const link = document.querySelector('a[href="#document-title"]')
+        link.addEventListener("click",()=>{
+            event.preventDefault()
+            document.querySelector("#document-title").scrollIntoView({
+                behavior:'smooth'
+            })
+        })
+
+        window.addEventListener('resize',()=>{
+            clientWith = document.documentElement.clientWidth
+            if(clientWith < 800){
+            sun.style.transform=`translateY(0px)`
+
+            grayCloud.style.transform=`translateX(0px)`
+            whiteCloud.style.transform=`translateX(0px)`
+
+            bird1.style.transform=`translateX(0px)`
+            bird2.style.transform=`translateX(0px)`
+            bird3.style.transform=`translateX(0px)`
+
+            mountain0.style.transform=`translateY(0px)`
+            mountain1.style.transform=`translateY(0px)`
+            mountain2.style.transform=`translateY(0px)`
+            mountain3.style.transform=`translateY(0px)`
+            mountain4.style.transform=`translateY(0px)`
+            mountain5.style.transform=`translateY(0px)`
+            mountain6.style.transform=`translateY(0px)`
+            mountain7.style.transform=`translateY(0px)`
+                
+            }
+        })
 </script>
 </html>
